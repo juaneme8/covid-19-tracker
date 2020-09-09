@@ -3,7 +3,9 @@ import { FormControl, Select, MenuItem, Card, CardContent } from '@material-ui/c
 import InfoBox from './components/InfoBox';
 import Map from './components/Map';
 import Table from './components/Table';
+import LineGraph from './components/LineGraph';
 import './App.css';
+import { sortData } from './util';
 
 function App() {
 	/*  Podemos pensar en el state como el modo de usar variables. 
@@ -31,8 +33,9 @@ function App() {
 						value: country.countryInfo.iso2, //USA, UKA
 					}));
 
+					const sortedData = sortData(data);
 					setCountries(countries);
-					setTableData(data);
+					setTableData(sortedData);
 				});
 		};
 		getCountriesData();
@@ -89,6 +92,7 @@ function App() {
 					<Table countries={tableData} />
 					<h3>Worldwide new cases</h3>
 					{/* Graph */}
+					<LineGraph />
 				</CardContent>
 			</Card>
 		</div>
